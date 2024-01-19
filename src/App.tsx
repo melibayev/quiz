@@ -9,15 +9,6 @@ function App() {
       <Routes>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-
-        {/* {authenticated ? (
-            <Route index element={<Home />} />
-        ) : (
-          <Route
-            path="/*"
-            element={<Navigate to="/login" />}
-          />
-        )} */}
       </Routes>
     </BrowserRouter>
   );
