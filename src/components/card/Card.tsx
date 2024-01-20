@@ -1,23 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaXmark, FaArrowRight } from "react-icons/fa6";
 
 import { increase } from "../../redux/indexCounterSlice";
 import { increaseTheScore } from "../../redux/totalScoreSlice";
-import styles from "./Card.module.scss";
-import { FaXmark, FaArrowRight } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { useNavigate } from "react-router-dom";
-
-interface CardProps {
-  id: number;
-  text: string;
-  a: string;
-  b: string;
-  c: string;
-  d: string;
-  correctAnswer: string;
-  numberOfQuestions: number;
-}
+import styles from "./Card.module.scss";
+import { CardProps } from "../../const";
 
 const Card: React.FC<CardProps> = ({ id, text, a, b, c, d, correctAnswer, numberOfQuestions }) => {
   const dispatch = useDispatch();

@@ -1,13 +1,7 @@
 import { Badge } from "antd";
-import { useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import purgePersistedData from "../../redux/cleanData";
+import { NavLink } from "react-router-dom";
 import styles from "./Home.module.scss";
 const Home = () => {
-  // const location = useLocation();
-  // useEffect(() => {
-  //   location.pathname === '/' && purgePersistedData()
-  // }, [location.pathname])
   return (
     <>
       <section id={styles.home}>

@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Admin from "./pages/admin/Admin";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
@@ -22,6 +23,7 @@ console.log(authValue);
             <Route path="/" element={<Home />} />
             <Route path="test/:id" element={<Test />}/>
             <Route path="results" element={<Results />}/>
+            <Route path="admin" element={<Admin />}/>
           </Route>
         ) : (
           <Route path="/" element={<Navigate to="/login" />}

@@ -1,0 +1,139 @@
+#admin {
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+}
+
+.admin {
+  min-width: 600px;
+  padding: 40px 20px;
+  border: 1px solid black;
+  &-create-title {
+    h1 {
+      margin-bottom: 12px;
+    }
+  }
+  @media (max-width: 768px) {
+    min-width: 550px;
+    border: none;
+  }
+  @media (max-width: 568px) {
+    min-width: 300px;
+  }
+}
+
+.form {
+  form {
+    label {
+      color: #4d4d4d;
+      font-weight: 500;
+      font-size: 12px;
+    }
+    input {
+      display: block;
+      padding: 10px 16px;
+      width: 100%;
+      font-size: 16px;
+      outline: none;
+      color: #4d4d4d;
+      border: 1px solid rgba(77, 77, 77, 0.1);
+      border-radius: 12px;
+      background-color: rgba(128, 128, 128, 0.1);
+      &::placeholder {
+        font-size: 14px;
+      }
+    }
+    textarea {
+      display: block;
+      padding: 10px 16px;
+      width: 100%;
+      font-size: 16px;
+      outline: none;
+      color: #4d4d4d;
+      border: 1px solid rgba(77, 77, 77, 0.1);
+      border-radius: 12px;
+      background-color: rgba(128, 128, 128, 0.1);
+      option {
+        font-size: 14px;
+      }
+      height: 100px;
+      resize: none;
+    }
+  }
+  &-options {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  &-select {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    select {
+      padding: 8px 10px;
+      font-size: 14px;
+      outline: none;
+      color: #4d4d4d;
+      border: 1px solid rgba(77, 77, 77, 0.1);
+      border-radius: 12px;
+      background-color: rgba(128, 128, 128, 0.1);
+      width: 50%;
+    }
+    @media (max-width: 568px) {
+        column-gap: 20px;
+    }
+
+  }
+  &-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      column-gap: 8px;
+      padding: 8px 32px;
+      font-size: 16px;
+      border-radius: 12px;
+      border: 3px solid hsl(156.694214876deg 100% 23.7254901961%);
+      background-color: transparent;
+      transition: 0.5s;
+      &:hover {
+        color: #fff;
+        background: hsl(156.694214876deg 100% 23.7254901961%);
+      }
+      @media (max-width: 568px) {
+        width: 100%;
+        justify-content: center;
+        }
+    }
+    @media (max-width: 568px) {
+        flex-direction: column;
+        row-gap: 12px;
+    }
+  }
+}
+
+.questions {
+    &-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        p {
+            font-size: 20px;
+        }
+        select {
+            padding: 8px 10px;
+            font-size: 14px;
+            outline: none;
+            color: #4d4d4d;
+            border: 1px solid rgba(77, 77, 77, 0.1);
+            border-radius: 12px;
+            background-color: rgba(128, 128, 128, 0.1);
+          }
+    }
+}

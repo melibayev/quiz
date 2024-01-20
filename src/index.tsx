@@ -7,7 +7,6 @@ import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './redux/store';
-import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 
 const root = ReactDOM.createRoot(

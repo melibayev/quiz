@@ -4,18 +4,9 @@ import { request } from "../../server/request";
 import Card from "../../components/card/Card";
 import styles from "./Test.module.scss";
 import { RootState } from "../../redux/store";
+import { Question } from "../../const";
 
 const Test = () => {
-  interface Question {
-    id: number;
-    text: string;
-    a: string;
-    b: string;
-    c: string;
-    d: string;
-    correctAnswer: string;
-    numberOfQuestions: number;
-  }
   const [ question, setQuestion ] = useState<Question[]>([])
   const [ totalQuestions, setTotalQuestions ] = useState<number>(0)
   const currentIndex = useSelector((state: RootState) => state.counterSlice.value);
@@ -39,7 +30,7 @@ const Test = () => {
     <section id={styles.test}>
       <div className="container">
         <div className={styles.test}>
-          <Card  key={currentData?.id} {...currentData} numberOfQuestions={totalQuestions} />
+          <Card key={currentData?.id} {...currentData} numberOfQuestions={totalQuestions} />
         </div>
       </div>
     </section>
