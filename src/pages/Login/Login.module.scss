@@ -1,154 +1,152 @@
 #login {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.4);
-    background-image: url('../../assets/login-register/section_bg.jpg' );
-    background-size: cover;
-    // background: linear-gradient(180deg, #EC9FE9 0%, rgba(220, 150, 237, 0.88) 29.83%, rgba(175, 169, 244, 0.82) 46.5%, rgba(110, 189, 223, 0.94) 100%);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  background-image: url("../../assets/login-register/section_bg.jpg");
+  background-size: cover;
+  // background: linear-gradient(180deg, #EC9FE9 0%, rgba(220, 150, 237, 0.88) 29.83%, rgba(175, 169, 244, 0.82) 46.5%, rgba(110, 189, 223, 0.94) 100%);
 }
 
 .form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    max-width: 900px;
-    height: 580px;
-    border-radius: 12px;
-    background-color: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 900px;
+  height: 580px;
+  border-radius: 12px;
+  background-color: #fff;
 
-    .password {
-        position: relative;
-        svg {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 20px;
-            cursor: pointer;
-            color: #4D4D4D;
-        }
+  .password {
+    position: relative;
+    svg {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #4d4d4d;
     }
-    &-info {
-        position: relative;
-        padding: 30px 40px 48px 40px;
-        img {
-            width: 80px;
-            height: auto;
-            margin-bottom: 8px;
-        }
-        h1 {
-            font-size: 24px;
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-        & > p {
-            font-size: 14px;
-            color: #737373;
-            margin-bottom: 12px;
-        }
-        form  {
-            display: flex;
-            flex-direction: column;
-            row-gap: 18px;
-        }
-        input {
-            display: block;
-            padding: 10px 16px;
-            width: 100%;
-            font-size: 16px;
-            outline: none;
-            color: #4D4D4D;
-            border: 1px solid rgba(77, 77, 77, 0.1);
-            border-radius: 12px !important;
-            background-color: rgba(128, 128, 128, 0.1);
-            border-radius: 6px;
-            &::placeholder {
-                font-size: 14px;
-            }
-        }
-        &-button {
-            height: 40px;
-            font-size: 16px;
-            margin-bottom: 24px;
-            color: #fff;
-            background: #162D3A;
-            border-radius: 12px;
-            span {
-                color: #fff;
-            }
-        }
-        &-sign-up-message {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            column-gap: 8px;
-            font-size: 12px;
-            margin-bottom: 24px;
-            a {
-                color: rgba(0, 122, 255, 1);
-            }
-        }
-        &-error-message {
-            padding: 0 10px;
-            font-size: 12px;
-            line-height: 18px;
-            text-align: center;
-            color: red;
-        }
-        &-credits {
-            position: absolute;
-            bottom: 20px;
-            left: calc(50% - 35px);
-            font-size: 12px;
-            color: #666;
-            text-align: center;
-        }
+  }
+  &-info {
+    position: relative;
+    padding: 30px 40px 48px 40px;
+    img {
+      width: 80px;
+      height: auto;
+      margin-bottom: 8px;
     }
-    &-img {
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            image-rendering: optimizeSpeed;
-            border-radius: 0px 12px 12px 0;
-        }
+    h1 {
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 8px;
     }
+    & > p {
+      font-size: 14px;
+      color: #737373;
+      margin-bottom: 12px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      row-gap: 18px;
+    }
+    input {
+      display: block;
+      padding: 10px 16px;
+      width: 100%;
+      font-size: 16px;
+      outline: none;
+      color: #4d4d4d;
+      border: 1px solid rgba(77, 77, 77, 0.1);
+      border-radius: 12px !important;
+      background-color: rgba(128, 128, 128, 0.1);
+      border-radius: 6px;
+      &::placeholder {
+        font-size: 14px;
+      }
+    }
+    &-button {
+      height: 40px;
+      font-size: 16px;
+      margin-bottom: 24px;
+      color: #fff;
+      background: #162d3a;
+      border-radius: 12px;
+      span {
+        color: #fff;
+      }
+    }
+    &-sign-up-message {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: 8px;
+      font-size: 12px;
+      margin-bottom: 24px;
+      a {
+        color: rgba(0, 122, 255, 1);
+      }
+    }
+    &-error-message {
+      padding: 0 10px;
+      font-size: 12px;
+      line-height: 18px;
+      text-align: center;
+      color: red;
+    }
+    &-credits {
+      position: absolute;
+      bottom: 20px;
+      left: calc(50% - 35px);
+      font-size: 12px;
+      color: #666;
+      text-align: center;
+    }
+  }
+  &-img {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      image-rendering: optimizeSpeed;
+      border-radius: 0px 12px 12px 0;
+    }
+  }
 }
 
 @media (max-width: 768px) {
-    #login {
-        position: relative;
-        align-items: flex-start;
-        background-color: #fff;
-        background-image: none;
+  #login {
+    position: relative;
+    align-items: flex-start;
+    background-color: #fff;
+    background-image: none;
+  }
+  .form {
+    grid-template-columns: 1fr;
+    width: 100vw;
+    &-info {
+      position: static;
+      padding: 10px 16px;
+      img {
+        display: none;
+      }
+      form {
+        row-gap: 20px;
+      }
     }
-    .form {
-        grid-template-columns: 1fr;
-        width: 100vw; 
-        &-info {
-            position: static;
-            padding: 10px 16px;
-            img {
-                display: none;
-            }
-            form {
-                row-gap: 20px;
-            }
-        }
-        &-img {
-            grid-row: 1;
-            text-align: left;
-            height: 180px;
-            padding: 0 16px;
-            img {
-                object-fit: cover;
-                border-radius: 12px;
-            }
-        }
+    &-img {
+      grid-row: 1;
+      text-align: left;
+      height: 180px;
+      padding: 0 16px;
+      img {
+        object-fit: cover;
+        border-radius: 12px;
+      }
     }
+  }
 }
-
-

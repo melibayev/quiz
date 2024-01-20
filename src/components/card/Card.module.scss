@@ -1,0 +1,87 @@
+.card {
+  min-width: 500px;
+  border: 1px solid hsl(209.7810218978deg 77.4011299435% 34.7058823529%);
+  border-radius: 12px;
+  background-color: hsl(210deg 60% 98.0392156863%);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  &-top {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    &-score {
+      display: flex;
+      align-items: center;
+      column-gap: 12px;
+      p.green {
+        color: hsl(156.694214876deg 100% 23.7254901961%);
+      }
+    }
+  }
+  &-info {
+    padding: 20px 40px;
+    &-question {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 24px;
+      text-align: center;
+      p {
+        font-size: 20px;
+        max-width: 640px;
+      }
+    }
+    &-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      button {
+        position: relative;
+        padding: 12px 16px;
+        font-size: 16px;
+        border-radius: 12px;
+        background-color: transparent;
+        border: 3px solid hsl(209.7810218978deg 77.4011299435% 60.7058823529%);
+        transition: 0.5s;
+        p {
+          position: absolute;
+          top: -14px;
+          right: -10px;
+          display: flex;
+          padding: 6px;
+          border-radius: 50%;
+          background-color: hsl(0deg 63.829787234% 36.862745098%);
+          svg {
+            color: #fff;
+          }
+        }
+        &:hover {
+          border-color: hsl(207.5deg 80% 25.5294117647%);
+        }
+        &.correct {
+          border-color: hsl(156.694214876deg 100% 23.7254901961%);
+        }
+        &.incorrect {
+          border-color: hsl(0deg 63.829787234% 36.862745098%);
+        }
+      }
+    }
+    &-next-button {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      button {
+        display: flex;
+        align-items: center;
+        column-gap: 8px;
+        padding: 12px 32px;
+        font-size: 16px;
+        border-radius: 12px;
+        color: #fff;
+        border: 3px solid hsl(156.694214876deg 100% 23.7254901961%);
+        background: hsl(156.694214876deg 100% 23.7254901961%);
+      }
+    }
+  }
+}

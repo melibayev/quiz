@@ -1,0 +1,50 @@
+#results {
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.results {
+  width: 500px;
+  padding: 40px;
+  text-align: center;
+  border: 1px solid black;
+  &-tabs {
+    display: flex;
+    align-items: center;
+  }
+  &-info {
+    margin-bottom: 12px;
+  }
+  &-score {
+    margin-top: 12px;
+    font-size: 20px;
+  }
+  &-congrats {
+    font-size: 20px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+  }
+  &-play-again {
+    display: flex;
+    justify-content: center;
+    button {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      column-gap: 8px;
+      padding: 12px 32px;
+      font-size: 16px;
+      border-radius: 12px;
+      border: 3px solid hsl(156.694214876deg 100% 23.7254901961%);
+      background-color: transparent;
+      transition: .5s;
+      &:hover {
+        color: #fff;
+          background: hsl(156.694214876deg 100% 23.7254901961%);
+      }
+    }
+  }
+}
