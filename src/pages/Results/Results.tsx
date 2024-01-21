@@ -49,10 +49,11 @@ const Results = () => {
           setUserScore(formattedData)          
         } catch (error) {
           console.log(error);  
+        } finally {
+          setLoading(false)
         }
       }
       fetchApi()
-      setLoading(false)
     }, [])
     const restartTheTest = () => {
       navigate('/')

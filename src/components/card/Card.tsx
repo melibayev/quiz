@@ -68,7 +68,7 @@ const Card: React.FC<CardProps> = ({ id, text, a, b, c, d, correctAnswer, number
           <button
             onClick={() => checkAnswer("a")}
             className={getButtonClass("a")}
-            disabled={isCorrect !== null}
+            disabled={clickedButton !== null}
           >
             {renderIconForIncorrect("a")}
             {a}
@@ -76,7 +76,7 @@ const Card: React.FC<CardProps> = ({ id, text, a, b, c, d, correctAnswer, number
           <button
             onClick={() => checkAnswer("b")}
             className={getButtonClass("b")}
-            disabled={isCorrect !== null}
+            disabled={clickedButton !== null}
           >
             {renderIconForIncorrect("b")}
             {b}
@@ -84,14 +84,14 @@ const Card: React.FC<CardProps> = ({ id, text, a, b, c, d, correctAnswer, number
           <button
             onClick={() => checkAnswer("c")}
             className={getButtonClass("c")}
-            disabled={isCorrect !== null}
+            disabled={clickedButton !== null}
           >
             {renderIconForIncorrect("c")} {c}
           </button>
           <button
             onClick={() => checkAnswer("d")}
             className={getButtonClass("d")}
-            disabled={isCorrect !== null}
+            disabled={clickedButton !== null}
           >
             {renderIconForIncorrect("d")} {d}
           </button>

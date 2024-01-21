@@ -66,17 +66,21 @@ const Admin = () => {
           solvedAt: new Date(item.solvedAt).toLocaleDateString('en-GB'),
         };
       });
-      setUserScore(formattedData)
-      
+      setUserScore(formattedData)      
     } catch (error) {
       console.log(error);
     }
   }
   useEffect(() => {
-    setLoading(true)
-    fetchApi();
-    fetchUserScore()
-    setLoading(false)
+    try {
+      setLoading(true)
+      fetchApi();
+      fetchUserScore()
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false)
+    }
   }, [currentVersion]);
   const currentIndexController = (newPagination: number) => {
     setCurrentIndex(newPagination)

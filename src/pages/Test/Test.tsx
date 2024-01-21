@@ -31,10 +31,11 @@ const Test = () => {
         setQuestion(res.data.questions);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false)
       }
     };
     fetchApi();
-    setLoading(false)
   }, []);
   const currentData = question[currentIndex];
 

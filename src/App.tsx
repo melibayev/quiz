@@ -1,17 +1,17 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Loader from "./components/loader/Loader";
+import Admin from "./pages/admin/Admin";
+import Home from "./pages/Home/Home";
 import NotFound from "./pages/NotFound/NotFound";
+import Results from "./pages/Results/Results";
+import Test from "./pages/Test/Test";
 import { RootState } from "./redux/store";
 
 // Lazy-loaded components
 const Login = lazy(() => import("./pages/Login/Login"));
 const Register = lazy(() => import("./pages/Register/Register"));
-const Home = lazy(() => import("./pages/Home/Home"));
-const Test = lazy(() => import("./pages/Test/Test"));
-const Results = lazy(() => import("./pages/Results/Results"));
-const Admin = lazy(() => import("./pages/admin/Admin"));
 
 
 function App() {
@@ -19,8 +19,6 @@ const authValue = useSelector((state: RootState) => state.authorizationSetting.v
 authValue && localStorage.setItem('authorized', 'true')
 const isAuthorized = localStorage.getItem('authorized') === 'true'
 const isAdmin = localStorage.getItem('admin') === 'true'
-
-
   return (
 <BrowserRouter>
       <Routes>
@@ -31,17 +29,17 @@ const isAdmin = localStorage.getItem('admin') === 'true'
             {isAdmin ? (
               // If user is an admin, show the Admin page by default
               <>
-                <Route path="/" element={<Suspense fallback={<Loader />}><Admin /></Suspense>} />
-                <Route path="home" element={<Suspense fallback={<Loader />}><Home /></Suspense>} />
-                <Route path="test/:id" element={<Suspense fallback={<Loader />}><Test /></Suspense>} />
-                <Route path="results" element={<Suspense fallback={<Loader />}><Results /></Suspense>} />
+                <Route path="/" element={<Admin />} />
+                <Route path="home" element={<Home />} />
+                <Route path="test/:id" element={<Test />} />
+                <Route path="results" element={<Results />} />
               </>
             ) : (
               // If user is not an admin, show the Home page by default
               <>
-                <Route index element={<Suspense fallback={<Loader />}><Home /></Suspense>} />
-                <Route path="test/:id" element={<Suspense fallback={<Loader />}><Test /></Suspense>} />
-                <Route path="results" element={<Suspense fallback={<Loader />}><Results /></Suspense>} />
+                <Route index element={<Home />} />
+                <Route path="test/:id" element={<Test />} />
+                <Route path="results" element={<Results />} />
               </>
             )}
           </Route>
