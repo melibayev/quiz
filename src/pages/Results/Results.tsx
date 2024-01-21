@@ -98,11 +98,11 @@ const Results = () => {
       key: "2",
       label: "Leaderboard",
       children: (
-        <div className="leaderboard">
-          <div className="leaderboard-title">
+        <div className={styles['results-container']}>
+          <div className={styles['results-container-title']}>
             Our leaders
           </div>
-          <div className="leaderboard-users">
+          <div className={styles['results-container-users']}>
           <Table columns={columns} dataSource={userScore} pagination={{pageSize: 5}} className={styles['results-table']}/>
           </div>
         </div>
