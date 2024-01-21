@@ -5,6 +5,10 @@
   justify-content: space-between;
   margin-bottom: 20px;
   border-bottom: 1px solid black;
+  @media (max-width: 568px) {
+    padding: 10px 0;
+    min-width: 310px;
+  };
   p {
     display: flex;
     flex-direction: column;

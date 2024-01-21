@@ -222,7 +222,7 @@ const Admin = () => {
       )  
       }
   ];
-  if (loading) {
+  if (loading || !question || !userScore) {
     return <Loader />
   }
   return (
