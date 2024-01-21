@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-
+import { createSlice} from '@reduxjs/toolkit';
 interface TotalScoreSlice {
   value: number;
 }
@@ -15,8 +14,11 @@ const totalScoreSlice = createSlice({
     increaseTheScore: (state) => {
       state.value += 100;
     },
+    resetTotalScore: (state) => {
+      state.value = 0;
+    },
   },
 });
 
-export const { increaseTheScore } = totalScoreSlice.actions;
+export const { increaseTheScore, resetTotalScore } = totalScoreSlice.actions;
 export default totalScoreSlice.reducer;

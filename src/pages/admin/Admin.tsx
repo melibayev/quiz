@@ -171,6 +171,15 @@ const Admin = () => {
         </>
       )
     },
+    { 
+      key: "3",
+      label: "LeaderBoard",
+      children: (
+        <div className="leaderborard">
+          
+        </div>
+      )  
+      }
   ];
   return (
     <section id={styles.admin}>

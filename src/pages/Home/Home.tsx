@@ -1,7 +1,16 @@
 import { Badge } from "antd";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { resetTotalScore } from "../../redux/totalScoreSlice";
+import { resetState } from "../../redux/indexCounterSlice";
 import styles from "./Home.module.scss";
 const Home = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(resetState())
+    dispatch(resetTotalScore())
+  }, [])
   return (
     <>
       <section id={styles.home}>

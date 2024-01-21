@@ -1,85 +1,87 @@
+import { useEffect, useState } from "react";
 import { Progress, Table, TableColumnsType, TableProps, Tabs, TabsProps } from "antd";
-import { useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { IoReload } from "react-icons/io5";
 import { RootState } from "../../redux/store";
-import styles from "./Results.module.scss";
-import { NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { resetTotalScore } from "../../redux/totalScoreSlice";
+import { resetState } from "../../redux/indexCounterSlice";
 import { request, token } from "../../server/request";
-import { Interface } from "readline";
 import { DataType, User } from "../../const";
 import UserCard from "../../components/userCard/UserCard";
+import styles from "./Results.module.scss";
 
 const Results = () => {
   const [ userScore, setUserScore ] = useState<User[]>([]);
   const totalScore = useSelector((state: RootState) => state.totalScoreSlice.value)
-    const totalPercentage = totalScore * 10 / 100
-    const twoColors = { '0%': '#108ee9', '100%': '#87d068' };
-    useEffect(() => {
+  const twoColors = { '0%': '#108ee9', '100%': '#87d068' };
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const score = localStorage.getItem('totalScore')
+  const scorePercentage = Number(score)
+  const dataSaved = localStorage.getItem('dataSaved') === 'true'
+  
+  
+  
+  useEffect(() => {
       const fetchApi = async() => {
+        const variantId = localStorage.getItem('variantId')
+        const saveResults = {TotalScore: Number(score), TestVariantId: Number(variantId) }        
         try {
+          // Save The user Results
+          if (!dataSaved && score && variantId) {
+            await request.post('TestResult/save-result/', saveResults, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "multipart/form-data",
+              }
+            })
+          }
+          localStorage.setItem('dataSaved', 'true');
+
+          // Getting results of all users
           let res = await request.get('TestResult/get-all', {
             headers: {
               Authorization: `Bearer ${token}`,
             }
           })
-          setUserScore(res.data)          
+          const formattedData = res.data.map((item: any) => {
+            return {
+              ...item,
+              solvedAt: new Date(item.solvedAt).toLocaleDateString('en-GB'),
+            };
+          });
+          setUserScore(formattedData)          
         } catch (error) {
-          console.log(error);
-          
+          console.log(error);  
         }
       }
       fetchApi()
     }, [])
+    const restartTheTest = () => {
+      dispatch(resetTotalScore())
+      dispatch(resetState())
+      navigate('/')
+    }
+
     const columns: TableColumnsType<DataType> = [
       {
-        title: 'Name',
-        dataIndex: 'name',
-        sorter: (a, b) => a.name.length - b.name.length,
-      },
-      {
-        title: 'Age',
-        dataIndex: 'age',
-        defaultSortOrder: 'descend',
-        sorter: (a, b) => a.age - b.age,
+        title: 'Username',
+        dataIndex: 'username',
+        sorter: (a, b) => a.username.length - b.username.length,
       },
       {
         title: 'Date',
-        dataIndex: 'address',
+        dataIndex: 'solvedAt',
+        defaultSortOrder: 'descend',
+      },
+      {
+        title: 'Score',
+        dataIndex: 'totalScore',
+        sorter: (a, b) => b.totalScore - a.totalScore,
+        defaultSortOrder: 'ascend'
       }
     ];
-    const data = [
-      {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-      },
-      {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-      },
-      {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-      },
-      {
-        key: '4',
-        name: 'Jim Red',
-        age: 32,
-        address: 'London No. 2 Lake Park',
-      },
-    ];
-
-
-    const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter, extra) => {
-      console.log('params', pagination, filters, sorter, extra);
-    };
-
 
     const items: TabsProps["items"] = [
     {
@@ -88,11 +90,11 @@ const Results = () => {
       children: (
         <>
         <h1 className={styles['results-info']}>Your test result</h1>
-        <Progress type="circle" percent={totalPercentage} strokeColor={twoColors} />,
-        <p className={styles['results-score']}>{totalScore / 100} / {10}</p>
-        <p className={styles['results-congrats']}>Congratulations!</p>
+        <Progress type="circle" percent={scorePercentage > 0 ? scorePercentage * 10 / 100 : 0} strokeColor={twoColors} />,
+        <p className={styles['results-score']}>{scorePercentage / 100} / {10}</p>
+        <p className={styles['results-congrats']}>Congrats!</p>
         <div className={styles['results-play-again']}>
-            <NavLink to={'/'}><button><IoReload /> Play Again</button></NavLink>
+           <button onClick={restartTheTest}><IoReload /> Play Again</button>
         </div>
         </>
       )
@@ -106,7 +108,7 @@ const Results = () => {
             Our leaders
           </div>
           <div className="leaderboard-users">
-          <Table columns={columns} dataSource={data} onChange={onChange}/>
+          <Table columns={columns} dataSource={userScore} pagination={{pageSize: 5}} className={styles['results-table']}/>
           </div>
         </div>
       )

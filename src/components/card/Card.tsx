@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import styles from "./Card.module.scss";
 import { CardProps } from "../../const";
+import { request, token } from "../../server/request";
 
 const Card: React.FC<CardProps> = ({ id, text, a, b, c, d, correctAnswer, numberOfQuestions }) => {
   const dispatch = useDispatch();
@@ -39,8 +40,10 @@ const Card: React.FC<CardProps> = ({ id, text, a, b, c, d, correctAnswer, number
     }
     return null;
   };
-  const nextButtonController = () => {
+  const nextButtonController = async() => {
     if (currentIndex === numberOfQuestions - 1) {
+        localStorage.setItem('totalScore', totalScore.toString())
+        localStorage.setItem('dataSaved', 'false')
         navigate('/results')
     } else {
         dispatch(increase())

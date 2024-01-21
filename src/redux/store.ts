@@ -4,20 +4,20 @@ import storage from 'redux-persist/lib/storage';
 import authorizationSlice from './authorizationSlice';
 import indexCounterSlice from './indexCounterSlice';
 import totalScoreSlice from './totalScoreSlice';
-
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['counterSlice', 'totalScoreSlice']
 };
 
-const persistedReducer = persistReducer(persistConfig, authorizationSlice);
+const persistedAuthorizationReducer = persistReducer(persistConfig, authorizationSlice);
+const persistedIndexCounterReducer = persistReducer(persistConfig, indexCounterSlice);
+const persistedTotalScoreReducer = persistReducer(persistConfig, totalScoreSlice);
 
 const store = configureStore({
   reducer: {
-    authorizationSetting: persistedReducer,
-    counterSlice: indexCounterSlice,
-    totalScoreSlice,
+    authorizationSetting: persistedAuthorizationReducer,
+    counterSlice: persistedIndexCounterReducer,
+    totalScoreSlice: persistedTotalScoreReducer,
   },
 });
 
