@@ -67,6 +67,7 @@ const Admin = () => {
         };
       });
       setUserScore(formattedData)
+      
     } catch (error) {
       console.log(error);
     }

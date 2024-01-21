@@ -8,18 +8,20 @@ import styles from './LeaderBoardCard.module.scss'
 interface LeaderboardCardProps extends User {
   onDelete: () => void;
 }
-const LeaderBoardCard: React.FC<LeaderboardCardProps> = ({ id, username, userId, solvedAt, totalScore, testVariantId, onDelete }) => {
+const LeaderBoardCard: React.FC<LeaderboardCardProps> = ({ id, username, userId, solvedAt, totalScore, onDelete }) => {
   const items: MenuProps['items'] = [
     {
       key: '1',
       label: (
-        <p className={styles['card-delete']} onClick={() => deleteQuestion(id, onDelete)}>Delete</p> 
+        <p className={styles['card-delete']} onClick={() => deleteUserScore(id, onDelete)}>Delete</p> 
      ),
     },
   ];
-  const deleteQuestion = async(userId: number, onDelete: () => void) => {
+  
+  const deleteUserScore = async(deleteId: number, onDelete: () => void) => {
+    
     try {
-        await request.delete(`TestResult/${id}/delete`, {
+        await request.delete(`TestResult/${deleteId}/delete`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "multipart/form-data",
