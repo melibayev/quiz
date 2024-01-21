@@ -34,7 +34,14 @@ const Login = () => {
       try {
         enterLoading(0);
         let res = await request.post("Auth/login", data);
-        Cookies.remove(TOKEN);
+        try {
+          Cookies.remove(TOKEN);
+        } catch (removeError) {
+          stopLoading(0);
+          setHaveError(true);
+          setError("Failed to remove existing session. Please try again.");
+          return;
+        }
         Cookies.set(TOKEN, res.data.token);
         localStorage.setItem('admin', res.data.isAdmin)
         dispatch(authorized());
