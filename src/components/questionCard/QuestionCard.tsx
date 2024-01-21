@@ -1,5 +1,4 @@
-import { Dropdown, MenuProps, Space } from 'antd'
-import { BsThreeDots } from "react-icons/bs";
+import { Dropdown, MenuProps } from 'antd'
 import { AiOutlineDelete } from "react-icons/ai";
 import styles from './QuestionCard.module.scss'
 import { CardProps } from '../../const';

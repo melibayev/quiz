@@ -6,6 +6,7 @@ import { RootState } from "../../redux/store";
 import { Question } from "../../const";
 import styles from "./Test.module.scss";
 import { useParams } from "react-router-dom";
+import Loader from "../../components/loader/Loader";
 
 const Test = () => {
   const [question, setQuestion] = useState<Question[]>([]);
@@ -14,8 +15,11 @@ const Test = () => {
     (state: RootState) => state.counterSlice.value
   );
   const { id } = useParams<{ id: any }>();
+  const [ loading, setLoading ] = useState<Boolean>(false)
+
   
   useEffect(() => {
+    setLoading(true)
     const fetchApi = async () => {
       try {
         const res = await request.get(`TestVariant/${id}/get-questions/`, {
@@ -31,9 +35,13 @@ const Test = () => {
       }
     };
     fetchApi();
+    setLoading(false)
   }, []);
   const currentData = question[currentIndex];
 
+  if (loading) {
+    return <Loader />
+  }
   return (
     <section id={styles.test}>
       <div className="container">

@@ -15,7 +15,7 @@ const totalScoreSlice = createSlice({
       state.value += 100;
     },
     resetTotalScore: (state) => {
-      state.value = 0;
+      return initialState;
     },
   },
 });

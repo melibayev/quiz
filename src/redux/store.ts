@@ -7,6 +7,7 @@ import totalScoreSlice from './totalScoreSlice';
 const persistConfig = {
   key: 'root',
   storage,
+  whitelist: ['authorizationSetting'],
 };
 
 const persistedAuthorizationReducer = persistReducer(persistConfig, authorizationSlice);
@@ -17,7 +18,7 @@ const store = configureStore({
   reducer: {
     authorizationSetting: persistedAuthorizationReducer,
     counterSlice: persistedIndexCounterReducer,
-    totalScoreSlice: persistedTotalScoreReducer,
+    totalScore: persistedTotalScoreReducer,
   },
 });
 

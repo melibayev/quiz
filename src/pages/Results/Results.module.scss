@@ -11,8 +11,8 @@
   min-width: 600px;
   min-height: 500px;
   padding: 40px;
+  border-radius: 12px;
   text-align: center;
-  border: 1px solid black;
   background-color: #fff;
   @media (max-width: 768px) {
     min-width: 500px;
@@ -23,6 +23,7 @@
     height: 100dvh;
     min-width: 300px;
     padding: 40px 20px;
+    border-radius: 0;
   }
   &-table {
     min-width: 400px;

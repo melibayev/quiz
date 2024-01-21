@@ -35,6 +35,7 @@ const Login = () => {
         enterLoading(0);
         let res = await request.post("Auth/login", data);
         Cookies.set(TOKEN, res.data.token);
+        localStorage.setItem('admin', res.data.isAdmin)
         dispatch(authorized());
         navigate("/");
       } catch (error) {

@@ -1,34 +1,44 @@
+import { lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Admin from "./pages/admin/Admin";
-import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
-import Results from "./pages/Results/Results";
-import Test from "./pages/Test/Test";
+import Loader from "./components/loader/Loader";
+import NotFound from "./pages/NotFound/NotFound";
 import { RootState } from "./redux/store";
+
+// Lazy-loaded components
+const Login = lazy(() => import("./pages/Login/Login"));
+const Register = lazy(() => import("./pages/Register/Register"));
+const Home = lazy(() => import("./pages/Home/Home"));
+const Test = lazy(() => import("./pages/Test/Test"));
+const Results = lazy(() => import("./pages/Results/Results"));
+const Admin = lazy(() => import("./pages/admin/Admin"));
 
 
 function App() {
 const authValue = useSelector((state: RootState) => state.authorizationSetting.value);
-console.log(authValue);
+authValue && localStorage.setItem('authorized', 'true')
+const isAuthorized = localStorage.getItem('authorized') === 'true'
+const isAdmin = localStorage.getItem('admin') === 'true'
+
 
   return (
-    <BrowserRouter>
+<BrowserRouter>
       <Routes>
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        {authValue ? (
+        <Route path="login" element={<Suspense fallback={<Loader />}><Login /></Suspense>} />
+        <Route path="register" element={<Suspense fallback={<Loader />}><Register /></Suspense>} />
+        {isAuthorized ? (
           <Route path="/">
-            <Route path="/" element={<Home />} />
-            <Route path="test/:id" element={<Test />}/>
-            <Route path="results" element={<Results />}/>
-            <Route path="admin" element={<Admin />}/>
+            <Route path="/" element={<Suspense fallback={<Loader />}><Home /></Suspense>} />
+            <Route path="test/:id" element={<Suspense fallback={<Loader />}><Test /></Suspense>} />
+            <Route path="results" element={<Suspense fallback={<Loader />}><Results /></Suspense>} />
+            {isAuthorized && isAdmin && (
+              <Route path="admin" element={<Suspense fallback={<Loader />}><Admin /></Suspense>} />
+            )}
           </Route>
         ) : (
-          <Route path="/" element={<Navigate to="/login" />}
-          />
+          <Route path="/" element={<Navigate to="/login" />} />
         )}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

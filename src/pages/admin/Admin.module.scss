@@ -1,13 +1,21 @@
 #admin {
+  padding-top: 40px;
   width: 100vw;
   height: 100dvh;
   display: flex;
+  overflow-y: scroll;
+  background: url("../../assets/background/03-Sky\ 2\ \(1\).png");
+  @media (max-width: 568px) {
+    padding-top: 0;
+    background: none;
+  }
 }
 
 .admin {
   min-width: 600px;
   padding: 40px 20px;
-  border: 1px solid black;
+  border-radius: 12px;
+  background-color: #fff;
   &-create-title {
     h1 {
       margin-bottom: 12px;
@@ -19,6 +27,7 @@
   }
   @media (max-width: 568px) {
     min-width: 300px;
+    border-radius: 0;
   }
 }
 
@@ -98,6 +107,7 @@
       font-size: 16px;
       border-radius: 12px;
       border: 3px solid hsl(156.694214876deg 100% 23.7254901961%);
+      color: #000;
       background-color: transparent;
       transition: 0.5s;
       &:hover {
@@ -134,5 +144,11 @@
       border-radius: 12px;
       background-color: rgba(128, 128, 128, 0.1);
     }
+  }
+}
+
+.leaderboard {
+  &-pagination {
+    margin-top: 24px;
   }
 }

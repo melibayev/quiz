@@ -2,20 +2,25 @@ import { Pagination, Tabs, TabsProps } from "antd";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import LeaderBoardCard from "../../components/leaderboardCard/LeaderBoardCard";
+import Loader from "../../components/loader/Loader";
 import QuestionCard from "../../components/questionCard/QuestionCard";
-import { Question } from "../../const";
+import { Question, User } from "../../const";
 import { request, token } from "../../server/request";
 import styles from "./Admin.module.scss";
 
 const Admin = () => {
   const { register, handleSubmit, reset } = useForm();
   const [ question, setQuestion ] = useState<Question[]>([]);
+  const [ userScore, setUserScore ] = useState<User[]>([]);
   const [ totalQuestions, setTotalQuestions ] = useState<number>(0);
   const [ currentIndex, setCurrentIndex ] = useState<number>(1)
   const [ currentVersion, setCurrentVersion ] = useState<string>('1')
+  const [ loading, setLoading ] = useState<Boolean>(false)
   const questionsPerPage = 5;
   const submit = async (data: any) => {
     try {
+      // create question
       let res = await request.post("Question/create", data, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -34,6 +39,7 @@ const Admin = () => {
   };
   const fetchApi = async () => {
     try {
+      // get questions by version type
       let res = await request.get(`TestVariant/${currentVersion}`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -47,8 +53,29 @@ const Admin = () => {
       console.log(error);
     }
   };
+  const fetchUserScore = async() => {
+    try {
+      let res = await request.get('TestResult/get-all', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      })
+      const formattedData = res.data.map((item: any) => {
+        return {
+          ...item,
+          solvedAt: new Date(item.solvedAt).toLocaleDateString('en-GB'),
+        };
+      });
+      setUserScore(formattedData)
+    } catch (error) {
+      console.log(error);
+    }
+  }
   useEffect(() => {
+    setLoading(true)
     fetchApi();
+    fetchUserScore()
+    setLoading(false)
   }, [currentVersion]);
   const currentIndexController = (newPagination: number) => {
     setCurrentIndex(newPagination)
@@ -160,7 +187,7 @@ const Admin = () => {
               </select>
             </div>
             {dataSlicer?.map(card => (
-              <QuestionCard key={card.id} {...card} onDelete={fetchApi} />
+              <QuestionCard key={card?.id} {...card} onDelete={fetchApi} />
             ))}
             <Pagination
               defaultCurrent={currentIndex} 
@@ -175,12 +202,24 @@ const Admin = () => {
       key: "3",
       label: "LeaderBoard",
       children: (
-        <div className="leaderborard">
-          
+        <div className="leaderboard">
+          {userScore?.slice((currentIndex - 1) * questionsPerPage, currentIndex * questionsPerPage).map(card => (
+            <LeaderBoardCard key={card?.id} {...card} onDelete={fetchUserScore} />
+          ))}
+          <Pagination
+            current={currentIndex}
+            onChange={currentIndexController}
+            total={userScore.length}
+            pageSize={questionsPerPage}
+            className={styles['leaderboard-pagination']}
+          />
         </div>
       )  
       }
   ];
+  if (loading) {
+    return <Loader />
+  }
   return (
     <section id={styles.admin}>
       <div className="container">
