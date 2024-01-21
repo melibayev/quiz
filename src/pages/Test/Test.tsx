@@ -39,7 +39,7 @@ const Test = () => {
   }, []);
   const currentData = question[currentIndex];
 
-  if (loading) {
+  if (loading || !question || currentIndex === undefined || currentIndex >= totalQuestions) {
     return <Loader />
   }
   return (
