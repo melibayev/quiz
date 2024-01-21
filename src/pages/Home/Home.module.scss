@@ -1,16 +1,16 @@
 #home {
   width: 100vw;
   height: 100dvh;
-  background: url("https://i.pinimg.com/564x/3c/96/bc/3c96bcaf5a6d0efc79d54166833c09b8.jpg");
   display: flex;
   justify-content: center;
   align-items: center;
   overflow-y: auto;
+  background: url('../../assets/background/03-Sky\ 2\ \(1\).png');
 }
 
 .home {
   &-title {
-    padding: 20px;
+    color: #fff;
     h1 {
       max-width: 800px;
       font-size: 32px;
@@ -22,7 +22,6 @@
     text-align: center;
     margin-bottom: 32px;
     border-radius: 12px;
-    background-color: rgba(256, 256, 256, 1);
   }
   &-main {
     display: flex;
@@ -67,7 +66,7 @@
   @media (max-width: 568px) {
     &-title {
       h1 {
-        font-size: 20px;
+        font-size: 24px;
       }
       p {
         font-size: 16px;

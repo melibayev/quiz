@@ -1,0 +1,17 @@
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 100px;
+
+    &-img {
+        img {
+            width: 50px;
+            border-radius: 50%;
+        }
+    }
+    &-info {
+        display: flex;
+        align-items: center;
+    }
+}
