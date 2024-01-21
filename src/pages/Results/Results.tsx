@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { Progress, Table, TableColumnsType, Tabs, TabsProps } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { IoReload } from "react-icons/io5";
-import { resetTotalScore } from "../../redux/totalScoreSlice";
-import { resetState } from "../../redux/indexCounterSlice";
 import { request, token } from "../../server/request";
 import { DataType, User } from "../../const";
 import styles from "./Results.module.scss";
@@ -13,7 +10,6 @@ import Loader from "../../components/loader/Loader";
 const Results = () => {
   const [ userScore, setUserScore ] = useState<User[]>([]);
   const twoColors = { '0%': '#108ee9', '100%': '#87d068' };
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const score = localStorage.getItem('totalScore')
   const scorePercentage = Number(score)

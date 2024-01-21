@@ -2,7 +2,6 @@ import { Badge } from "antd";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import Loader from "../../components/loader/Loader";
 import { resetState } from "../../redux/indexCounterSlice";
 import { resetTotalScore } from "../../redux/totalScoreSlice";
 import styles from "./Home.module.scss";

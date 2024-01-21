@@ -21,7 +21,7 @@ const Admin = () => {
   const submit = async (data: any) => {
     try {
       // create question
-      let res = await request.post("Question/create", data, {
+      await request.post("Question/create", data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
