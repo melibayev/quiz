@@ -16,18 +16,17 @@ const Test = () => {
   );
   const { id } = useParams<{ id: any }>();
   const [ loading, setLoading ] = useState<Boolean>(false)
-
-  
+  const newId = id === '1' ? '3' : '4';
   useEffect(() => {
     setLoading(true)
     const fetchApi = async () => {
       try {
-        const res = await request.get(`TestVariant/${id}/get-questions/`, {
+        const res = await request.get(`TestVariant/${newId}/get-questions/`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        localStorage.setItem('variantId', id)
+        localStorage.setItem('variantId', newId)
         setTotalQuestions(res.data.numberOfQuestions);
         setQuestion(res.data.questions);
       } catch (error) {

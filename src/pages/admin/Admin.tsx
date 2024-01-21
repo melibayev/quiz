@@ -15,7 +15,7 @@ const Admin = () => {
   const [ userScore, setUserScore ] = useState<User[]>([]);
   const [ totalQuestions, setTotalQuestions ] = useState<number>(0);
   const [ currentIndex, setCurrentIndex ] = useState<number>(1)
-  const [ currentVersion, setCurrentVersion ] = useState<string>('1')
+  const [ currentVersion, setCurrentVersion ] = useState<string>('3')
   const [ loading, setLoading ] = useState<Boolean>(false)
   const questionsPerPage = 5;
   const submit = async (data: any) => {
@@ -162,8 +162,8 @@ const Admin = () => {
                     <option value="" disabled>
                       Version Type
                     </option>
-                    <option value="1">Version 1</option>
-                    <option value="2">Version 2</option>
+                    <option value="3">Version 1</option>
+                    <option value="4">Version 2</option>
                   </select>
                 </div>
                 <button type="submit">Submit</button>
@@ -182,8 +182,8 @@ const Admin = () => {
             <div className={styles['questions-title']}>
               <p>Total Questions: {totalQuestions}</p>
               <select onChange={(e) => currentVersionController(e.target.value)}>
-                <option value="1">Version 1</option>
-                <option value="2">Version 2</option>
+                <option value="3">Version 1</option>
+                <option value="4">Version 2</option>
               </select>
             </div>
             {dataSlicer?.map(card => (

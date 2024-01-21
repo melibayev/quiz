@@ -28,14 +28,25 @@ const isAdmin = localStorage.getItem('admin') === 'true'
         <Route path="register" element={<Suspense fallback={<Loader />}><Register /></Suspense>} />
         {isAuthorized ? (
           <Route path="/">
-            <Route path="/" element={<Suspense fallback={<Loader />}><Home /></Suspense>} />
-            <Route path="test/:id" element={<Suspense fallback={<Loader />}><Test /></Suspense>} />
-            <Route path="results" element={<Suspense fallback={<Loader />}><Results /></Suspense>} />
-            {isAuthorized && isAdmin && (
-              <Route path="admin" element={<Suspense fallback={<Loader />}><Admin /></Suspense>} />
+            {isAdmin ? (
+              // If user is an admin, show the Admin page by default
+              <>
+                <Route path="/" element={<Suspense fallback={<Loader />}><Admin /></Suspense>} />
+                <Route path="home" element={<Suspense fallback={<Loader />}><Home /></Suspense>} />
+                <Route path="test/:id" element={<Suspense fallback={<Loader />}><Test /></Suspense>} />
+                <Route path="results" element={<Suspense fallback={<Loader />}><Results /></Suspense>} />
+              </>
+            ) : (
+              // If user is not an admin, show the Home page by default
+              <>
+                <Route index element={<Suspense fallback={<Loader />}><Home /></Suspense>} />
+                <Route path="test/:id" element={<Suspense fallback={<Loader />}><Test /></Suspense>} />
+                <Route path="results" element={<Suspense fallback={<Loader />}><Results /></Suspense>} />
+              </>
             )}
           </Route>
         ) : (
+          // If not authorized, redirect to login
           <Route path="/" element={<Navigate to="/login" />} />
         )}
         <Route path="*" element={<NotFound />} />
