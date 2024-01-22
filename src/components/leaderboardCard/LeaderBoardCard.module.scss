@@ -1,8 +1,8 @@
 .card {
   padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 6px;
   margin-bottom: 20px;
   border-bottom: 1px solid black;
   p {
@@ -21,11 +21,18 @@
   &-user-info {
     display: flex;
     align-items: center;
+    justify-content: center;
     column-gap: 8px;
+  }
+  &-time-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   &-score-info {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     column-gap: 42px;
     svg {
       font-size: 20px;
@@ -45,6 +52,9 @@
         font-size: 14px;
       }
     }
+    &-score-info {
+      column-gap: 12px;
+    }
     &-user-info {
       p {
         span {
@@ -55,5 +65,5 @@
         }
       }
     }
-  };
+  }
 }

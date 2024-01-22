@@ -2,13 +2,17 @@ import { Dropdown, MenuProps } from 'antd'
 import { AiOutlineDelete } from "react-icons/ai";
 import styles from './QuestionCard.module.scss'
 import { CardProps } from '../../const';
-import { request, token } from '../../server/request';
+import { request } from '../../server/request';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 interface QuestionCardProps extends CardProps {
     onDelete: () => void;
 }
 const QuestionCard: React.FC<QuestionCardProps> = ({ id, text, a, b, c, d, correctAnswer, numberOfQuestions, onDelete }) => {
+  const token = useSelector((state: RootState) => state.authorizationSetting.token);
+
     const items: MenuProps['items'] = [
         {
           key: '1',

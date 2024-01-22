@@ -1,16 +1,19 @@
 import { Pagination, Tabs, TabsProps } from "antd";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import LeaderBoardCard from "../../components/leaderboardCard/LeaderBoardCard";
 import Loader from "../../components/loader/Loader";
 import QuestionCard from "../../components/questionCard/QuestionCard";
 import { Question, User } from "../../const";
-import { request, token } from "../../server/request";
+import { RootState } from "../../redux/store";
+import { request } from "../../server/request";
 import styles from "./Admin.module.scss";
 
 const Admin = () => {
   const { register, handleSubmit, reset } = useForm();
+  const token = useSelector((state: RootState) => state.authorizationSetting.token);
   const [ question, setQuestion ] = useState<Question[]>([]);
   const [ userScore, setUserScore ] = useState<User[]>([]);
   const [ totalQuestions, setTotalQuestions ] = useState<number>(0);

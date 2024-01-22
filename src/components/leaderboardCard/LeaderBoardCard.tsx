@@ -1,14 +1,17 @@
 import { Dropdown, MenuProps } from "antd";
 import { AiOutlineDelete } from "react-icons/ai";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { User } from "../../const";
-import { request, token } from "../../server/request";
+import { RootState } from "../../redux/store";
+import { request } from "../../server/request";
 import styles from './LeaderBoardCard.module.scss'
 
 interface LeaderboardCardProps extends User {
   onDelete: () => void;
 }
 const LeaderBoardCard: React.FC<LeaderboardCardProps> = ({ id, username, userId, solvedAt, totalScore, onDelete }) => {
+  const token = useSelector((state: RootState) => state.authorizationSetting.token);
   const items: MenuProps['items'] = [
     {
       key: '1',

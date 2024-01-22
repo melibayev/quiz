@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { request, token } from "../../server/request";
+import { request } from "../../server/request";
 import Card from "../../components/card/Card";
 import { RootState } from "../../redux/store";
 import { Question } from "../../const";
@@ -10,6 +10,7 @@ import Loader from "../../components/loader/Loader";
 
 const Test = () => {
   const [question, setQuestion] = useState<Question[]>([]);
+  const token = useSelector((state: RootState) => state.authorizationSetting.token);
   const [totalQuestions, setTotalQuestions] = useState<number>(0);
   const currentIndex = useSelector(
     (state: RootState) => state.counterSlice.value
@@ -19,6 +20,7 @@ const Test = () => {
   const newId = id === '1' ? '3' : '4';
   useEffect(() => {
     setLoading(true)
+    console.log(token);
     const fetchApi = async () => {
       try {
         const res = await request.get(`TestVariant/${newId}/get-questions/`, {
@@ -36,7 +38,7 @@ const Test = () => {
       }
     };
     fetchApi();
-  }, []);
+  }, [token]);
   const currentData = question[currentIndex];
 
   if (loading || !question || currentIndex === undefined || currentIndex >= totalQuestions) {

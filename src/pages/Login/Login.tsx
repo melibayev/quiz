@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 
 // local imports
 import { TOKEN } from "../../const";
-import { authorized } from "../../redux/authorizationSlice";
+import { authorized, setToken } from "../../redux/authorizationSlice";
 // design
 import { Button } from "antd";
 import styles from "./Login.module.scss";
@@ -34,15 +34,8 @@ const Login = () => {
       try {
         enterLoading(0);
         let res = await request.post("Auth/login", data);
-        try {
-          Cookies.remove(TOKEN);
-        } catch (removeError) {
-          stopLoading(0);
-          setHaveError(true);
-          setError("Failed to remove existing session. Please try again.");
-          return;
-        }
         Cookies.set(TOKEN, res.data.token);
+        dispatch(setToken(res.data.token));
         localStorage.setItem('admin', res.data.isAdmin)
         dispatch(authorized());
         navigate("/");

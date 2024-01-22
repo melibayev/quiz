@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import { Progress, Table, TableColumnsType, Tabs, TabsProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import { IoReload } from "react-icons/io5";
-import { request, token } from "../../server/request";
+import { request } from "../../server/request";
 import { DataType, User } from "../../const";
 import styles from "./Results.module.scss";
 import Loader from "../../components/loader/Loader";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 const Results = () => {
   const [ userScore, setUserScore ] = useState<User[]>([]);
+  const token = useSelector((state: RootState) => state.authorizationSetting.token);
   const twoColors = { '0%': '#108ee9', '100%': '#87d068' };
   const navigate = useNavigate()
   const score = localStorage.getItem('totalScore')
