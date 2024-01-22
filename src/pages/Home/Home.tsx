@@ -1,16 +1,12 @@
 import { Badge } from "antd";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import Loader from "../../components/loader/Loader";
 import { resetState } from "../../redux/indexCounterSlice";
-import { RootState } from "../../redux/store";
 import { resetTotalScore } from "../../redux/totalScoreSlice";
 import styles from "./Home.module.scss";
 const Home = () => {
-  const dispatch = useDispatch()
-  const token = useSelector((state: RootState) => state.authorizationSetting.token);
-  
+  const dispatch = useDispatch()  
   useEffect(() => {
     dispatch(resetState())    
     dispatch(resetTotalScore()) 
